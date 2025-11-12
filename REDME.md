@@ -1,1 +1,0 @@
-# Mail service for union military lowyers site
