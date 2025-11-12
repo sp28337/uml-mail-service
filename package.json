@@ -5,9 +5,9 @@
   "version": "0.1.0",
   "main": "server.ts",
   "scripts": {
-    "start": "node --loader ts-node/esm server.ts",
-    "dev": "node --loader ts-node/esm server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js"
   },
   "keywords": [],
   "author": "sp28337",
