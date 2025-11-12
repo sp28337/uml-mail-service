@@ -12,8 +12,12 @@ const app = express();
 app.use(express.json()); // Разбирает JSON из body запроса
 app.use(cors()); // Разрешает запросы с других портов (фронтенд)
 
+
 app.use(cors({
-  origin: ['http://ВАШ-IP-ФРОНТЕНДА', 'http://localhost:3000'],
+  origin: [
+    process.env.CORS_FRONTEND_URL!, 
+    process.env.CORS_LOCALHOST_FRONTEND_URL!
+  ],
   credentials: true
 }));
 
@@ -65,7 +69,7 @@ app.post('/api/contact', async (req: Request, res: Response) => {
     // ОТПРАВЛЯЕМ ПИСЬМО АДМИНИСТРАТОРУ
     await transporter.sendMail({
       from: process.env.EMAIL_USER, // От кого отправляем (наша почта)
-      to: 'sp28337@yandex.ru', // Кому отправляем (корпоративная почта)
+      to: process.env.ADMIN_EMAIL, // Кому отправляем (корпоративная почта)
       subject: `🔔 Новая заявка: ${subject}`, // Тема письма
       // html — HTML разметка письма
       html: `
